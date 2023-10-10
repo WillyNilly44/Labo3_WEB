@@ -12,7 +12,7 @@ export default class APIServer {
         this.port = port;
         this.initMiddlewaresPipeline();
         this.httpContext = null;
-        this.httpServer = createServer(async (req, res) => { this.handleHttpResquest(req, res) });
+        this.httpServer = createServer(async (req, res) => { this.handleHttpRequest(req, res) });
     }
     initMiddlewaresPipeline() {
 
@@ -26,7 +26,7 @@ export default class APIServer {
 
         this.middlewaresPipeline.add(router.API_EndPoint);
     }
-    async handleHttpResquest(req, res) {
+    async handleHttpRequest(req, res) {
         this.markRequestProcessStartTime();
         this.httpContext = await HttpContext.create(req, res);
         this.showShortRequestInfo();
@@ -39,9 +39,9 @@ export default class APIServer {
     }
     startupMessage() {
         log(FgGreen, "************************************");
-        log(FgGreen, "* API SERVER - version beta - 1.92 *");
+        log(FgGreen, "* Laboratoire 3 *");
         log(FgGreen, "************************************");
-        log(FgGreen, "* Author: Nicolas Chourot          *");
+        log(FgGreen, "* Author: William Sauvé            *");
         log(FgGreen, "* Lionel-Groulx College            *");
         log(FgGreen, "* Release date: october 2023       *");
         log(FgGreen, "************************************");
