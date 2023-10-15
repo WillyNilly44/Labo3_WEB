@@ -1,14 +1,20 @@
-import Model from './model.js';
 
-export default class CollectionFilterModel extends Model {
-    constructor() {
-        super();
-        this.addField('Type', 'string');
-        this.addField('Nom', 'string');
-        this.addField('order', 'boolean');
-        this.addField('n', 'integer');
-        this.addField('i', 'integer');
-              
-        this.setKey("Type");
+
+export default class CollectionFilter {
+    constructor(objectList, params, model) {
+        this.objectList = objectList;
+        this.params = params;
+        this.model = model;
+    }
+    get()
+    {
+        if(this.params == null)
+        {
+            return this.objectList
+        }
+        //type = this.params[0]
+       // if(type=='sort'){
+            //sort
+       // }
     }
 }
