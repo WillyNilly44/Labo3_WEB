@@ -16,7 +16,33 @@ export default class CollectionFilter {
 
         if(type == 'sort')
         {
-            
+            let started = true;
+            let modified = false;
+            let index =0;
+
+            console.log(this.innerCompare('bebe','allo'));
+            while(!modified || started)
+            {
+                started = false;
+                modified = false;
+                for(let object of this.objectList)
+                {
+                    if(index == 0)
+                    {
+                        break;
+                    }
+                    let temp = this.innerCompare(object[value],this.objectList[index+1][value])
+                    if(temp ==1)
+                    {
+                        let tempObj = object
+                        this.objectList[index]=this.objectList[index+1]
+                        this.objectList[index+1] = tempObj
+                        modified = true
+                    }  
+                    index++;      
+                }
+            }
+            return this.objectList;
         }
 
         if (this.model.isMember(type)) {
@@ -61,4 +87,5 @@ export default class CollectionFilter {
         }
 
     }
+    innerCompare(x, y) { if ((typeof x) === 'string') return x.localeCompare(y); else return this.compareNum(x, y); }
 }
