@@ -15,7 +15,7 @@ export default class CollectionFilter {
         if (this.params == null) {
             return this.objectList
         }
-        if (Object.keys(this.params).length == 1) {
+        if (Object.keys(this.params).length == 1 && type != 'fields') {
             type = Object.keys(this.params)[0];
             value = this.params[type]
         }
@@ -37,6 +37,17 @@ export default class CollectionFilter {
                 }
                 return newList;
             }
+        }
+        if (type == 'fields') {
+            let fields = this.params[type].split(',');
+            let newList = [];
+            while (index > fields.length) {
+                for (let object of this.objectList) {
+                    
+                    newList.push(/*example{Category:'Cloud'} */)
+                }
+            }
+            console.log();
         }
         if (type == 'sort') {
             this.objectList.sort(function (a, b) {
