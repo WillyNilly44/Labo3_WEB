@@ -17,8 +17,7 @@ export default class CollectionFilter {
         if(type == 'sort')
         {
             this.objectList.sort(function(a,b){
-                let temp = innerCompare(a[value],b[value])
-                return temp;
+                return innerCompare(a[value],b[value])
             })
             return this.objectList;
         }
@@ -65,5 +64,22 @@ export default class CollectionFilter {
         }
 
     }
-    innerCompare(x, y) { if ((typeof x) === 'string') return x.localeCompare(y); else return this.compareNum(x, y); }
+    
 }
+compareNum(x,y)
+{
+    if (x === y) {return 0;}
+    else if(x < y){return -1;}
+    return 1;
+}
+innerCompare(x, y)
+{
+    if ((typeof x) === 'string')
+    {
+        return x.localeCompare(y);
+    }
+    else
+    {
+        return compareNum(x, y);
+    }
+} 
