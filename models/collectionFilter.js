@@ -1,3 +1,5 @@
+import { deleteByIndex } from "../utilities.js";
+
 export default class CollectionFilter {
     constructor(objectList, params, model) {
         this.objectList = objectList;
@@ -40,14 +42,28 @@ export default class CollectionFilter {
         }
         if (type == 'fields') {
             let fields = this.params[type].split(',');
-            let newList = [];
-            while (index > fields.length) {
-                for (let object of this.objectList) {
-                    
-                    newList.push(/*example{Category:'Cloud'} */)
+            let fieldsonly = [];
+            fieldsonly = this.objectList.map(o => fields.reduce((x, y) => {
+                x[y] = o[y];
+                return x;
+              }, {}));
+            for (let f of fields) {
+                let remove = [];
+                let index = 0;
+                fieldsonly.sort(function (a, b) {
+                    return innerCompare(a[f], b[f])
+                })
+                while (index <= fieldsonly.length - 1) {
+                    if (fieldsonly[index + 1] != undefined) {
+                        if (fieldsonly[index][f]. == fieldsonly[index + 1][f]) {
+                            remove.push(index + 1);
+                        }
+                    }
+                    index++;
                 }
+                deleteByIndex(fieldsonly, remove)
             }
-            console.log();
+            
         }
         if (type == 'sort') {
             this.objectList.sort(function (a, b) {
