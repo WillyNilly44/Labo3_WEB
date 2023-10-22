@@ -30,9 +30,9 @@ export default class CollectionFilter {
         //console.log()
         if (type2 != undefined) {
             if (type == 'limit' && type2 == 'offset') {
-                let index = parseInt(offset);
+                let index = parseInt(offset)*parseInt(limit);
                 let newList = [];
-                let nogo = parseInt(limit) + parseInt(offset);
+                let nogo = parseInt(limit) + index;
                 while (index < nogo) {
                     newList.push(this.objectList[index])
                     index++;
@@ -55,7 +55,7 @@ export default class CollectionFilter {
                 })
                 while (index <= fieldsonly.length - 1) {
                     if (fieldsonly[index + 1] != undefined) {
-                        if (fieldsonly[index][f]. == fieldsonly[index + 1][f]) {
+                        if (fieldsonly[index][f] == fieldsonly[index + 1][f]) {
                             remove.push(index + 1);
                         }
                     }
@@ -63,7 +63,7 @@ export default class CollectionFilter {
                 }
                 deleteByIndex(fieldsonly, remove)
             }
-            
+            return fieldsonly;
         }
         if (type == 'sort') {
             this.objectList.sort(function (a, b) {
